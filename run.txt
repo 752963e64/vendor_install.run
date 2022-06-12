@@ -1,2 +1,4 @@
+# To run a file you must follow these rules
+# if you need root access... you must add sudo command.
 chmod +x /tmp/$_filename
 /tmp/$_filename
