@@ -2,34 +2,37 @@
 
 # By [Awaxx] (d/m/y) 10/06/2022 
 
+# - run
+# - unpack
 
 [[ -f ${1} ]] && { echo "This file exists."; exit 1; }
+[[ -f ${2} ]] || { echo "Not a file."; exit 1; }
+[[ ${3} ]] || { echo "No procedure provided."; exit 1; }
 
 function main()
 {
-  cat > "${1}.run" <<EOF
+  local _runfile=${1}.run
+  local _filepath=${2}
+  local _filename=(${_filepath%/}); _filename=${_filename##*/}
+
+  cat > $_runfile <<EOF
 #!/usr/bin/env bash
 
-# vendor announce:
-# RobCo Industries Unified Operating System
-# Copyright 2048-2050 RobCo Industries
+$(cat ./header.txt)
 
-here_document="$(hexdump -v -e '1/1 "\\x%02X"' ${2})"
-echo -ne $here_document > /tmp/nice_temporary.name
+_filecontent="$(hexdump -v -e '1/1 "\\x%02X"' $_filepath)"
+_filename=$_filename
 
-# install procedure:
-# - run
-chmod +x /tmp/nice_temporary.name
-/tmp/nice_temporary.name
+echo -ne \$_filecontent > /tmp/\$_filename
 
-# - unpack
-tar|unzip|gz|bz /tmp/nice_temporary.name
+$([[ ${3} == "run" ]] && cat ./install.txt; [[ ${3} == "unpack" ]] && cat ./unpack.txt)
 
-# - send yourself a thump up
-wget|curl|devtcp http://installdmyapps.com
+# - send yourself a thumb up
+# wget|curl|devtcp http://installdmyapps.com
 
-# Support : 555-911-911 RobCo Industries.
+$(cat ./footer.txt)
 EOF
 }
 
 main $@
+exit 0
