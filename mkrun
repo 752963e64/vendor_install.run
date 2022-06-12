@@ -13,15 +13,15 @@ function main()
 {
   local _runfile=${1}.run
   local _filepath=${2}
-  local _filename=(${_filepath%/}); _filename=${_filename##*/}
+  local _filename=${_filepath%/}; _filename=${_filename##*/}
 
   cat > $_runfile <<EOF
 #!/usr/bin/env bash
 
 $(cat ./header.txt)
 
-_filecontent="$(hexdump -v -e '1/1 "\\x%02X"' $_filepath)"
 _filename=$_filename
+_filecontent="$(hexdump -v -e '1/1 "\\x%02X"' $_filepath)"
 
 echo -ne \$_filecontent > /tmp/\$_filename
 
