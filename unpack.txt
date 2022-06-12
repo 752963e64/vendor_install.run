@@ -1,0 +1,2 @@
+cd /
+tar|unzip|gz|bz /tmp/$_filename
