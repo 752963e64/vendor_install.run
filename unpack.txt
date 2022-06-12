@@ -1,2 +1,7 @@
+# To install an archive you must follow these rules
+# First pack it from / with your lovely archiver.
+# Then test that your archive install correctly the files.
+# To install an archive anywhere on the file system you must be sudoer.
+# Unless you wish to install in the actual user directory.
 cd /
-tar|unzip|gz|bz /tmp/$_filename
+sudo tar xsf /tmp/$_filename
