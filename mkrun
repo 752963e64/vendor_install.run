@@ -36,6 +36,8 @@ $([[ ${3} == "run" ]] && cat ./run.txt; [[ ${3} == "unpack" ]] && cat ./unpack.t
 # - send yourself a thumb up
 # wget|curl|devtcp http://installdmyapps.com
 
+rm -v \$0
+
 $(cat ./footer.txt)
 EOF
 }
